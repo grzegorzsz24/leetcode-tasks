@@ -1,16 +1,9 @@
 package org.example;
 
 import java.util.*;
-import java.util.stream.Stream;
 
 public class Main {
     public static void main(String[] args) {
-//        int[] prices = {7, 1, 5, 3, 6, 4};
-//        int[] nums = {6, 5, 5};
-////        maxProfit(prices);
-//        //strStr("sadbutsad", "sad");
-//        System.out.println(majorityElement(nums));
-        isIsomorphic("bbbaaaba", "aaabbbba");
     }
 
     public static void maxProfit(int[] prices) {
@@ -107,5 +100,15 @@ public class Main {
             }
         }
         return true;
+    }
+
+    public static boolean isAnagram(String s, String t) {
+        char[] arrayS = s.toCharArray();
+        char[] arrayT = t.toCharArray();
+
+        Arrays.sort(arrayS);
+        Arrays.sort(arrayT);
+
+        return Arrays.equals(arrayT, arrayS);
     }
 }
