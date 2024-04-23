@@ -111,4 +111,23 @@ public class Main {
 
         return Arrays.equals(arrayT, arrayS);
     }
+    public static boolean isHappy(int n) {
+        HashSet<Integer> nSet = new HashSet<>();
+
+        while (nSet.add(n)) {
+            int sum = 0;
+
+            while (n > 0) {
+                sum += (n%10) * (n%10);
+                n /= 10;
+            }
+
+            if (sum == 1) {
+                return true;
+            } else {
+                n = sum;
+            }
+        }
+        return false;
+    }
 }
