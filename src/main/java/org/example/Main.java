@@ -111,6 +111,7 @@ public class Main {
 
         return Arrays.equals(arrayT, arrayS);
     }
+
     public static boolean isHappy(int n) {
         HashSet<Integer> nSet = new HashSet<>();
 
@@ -127,6 +128,17 @@ public class Main {
             } else {
                 n = sum;
             }
+        }
+        return false;
+    }
+
+    public static boolean containsNearbyDuplicate(int[] nums, int k) {
+        Map<Integer, Integer> numsMap = new HashMap<>();
+        for (int i=0; i<nums.length; i++) {
+            if (numsMap.containsKey(nums[i]) && Math.abs(numsMap.get(nums[i]) - i) <= k) {
+                return true;
+            }
+            numsMap.put(nums[i], i);
         }
         return false;
     }
