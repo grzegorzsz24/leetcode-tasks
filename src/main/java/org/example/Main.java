@@ -6,29 +6,28 @@ public class Main {
     public static void main(String[] args) {
     }
 
-    public static void maxProfit(int[] prices) {
+    public void maxProfit(int[] prices) {
         int min = prices[0];
         int maxProfit = 0;
-        for(int i=1; i<prices.length; i++) {
+        for (int i = 1; i < prices.length; i++) {
             maxProfit = Math.max(maxProfit, prices[i] - min);
             min = Math.min(min, prices[i]);
         }
     }
 
-    public static int strStr(String haystack, String needle) {
+    public int strStr(String haystack, String needle) {
         if (haystack.contains(needle)) {
             return haystack.indexOf(needle);
-        }
-        else {
-            return - 1;
+        } else {
+            return -1;
         }
     }
 
-    public static int majorityElement(int[] nums) {
+    public int majorityElement(int[] nums) {
         Map<Integer, Integer> elements = new HashMap<>();
         int max = 0;
         int value = 0;
-        for(int i=0; i<nums.length; i++) {
+        for (int i = 0; i < nums.length; i++) {
             if (!elements.containsKey(nums[i])) {
                 elements.put(nums[i], 1);
             } else {
@@ -42,21 +41,21 @@ public class Main {
         return value;
     }
 
-    public static boolean isPalindrome(String s) {
+    public boolean isPalindrome(String s) {
         s = s.toLowerCase().replaceAll("[^a-zA-Z0-9]", "");
         StringBuilder s2 = new StringBuilder(s).reverse();
         return s.contentEquals(s2);
     }
 
-    public static boolean canConstruct(String ransomNote, String magazine) {
+    public boolean canConstruct(String ransomNote, String magazine) {
         if (ransomNote.length() > magazine.length()) return false;
         int[] charactersCounter = new int[26];
 
         for (char c : magazine.toCharArray()) {
-                charactersCounter[c - 'a']++;
+            charactersCounter[c - 'a']++;
         }
 
-        for (char c: ransomNote.toCharArray()) {
+        for (char c : ransomNote.toCharArray()) {
             if (charactersCounter[c - 'a'] == 0) {
                 return false;
             } else {
@@ -66,7 +65,7 @@ public class Main {
         return true;
     }
 
-    public static boolean isIsomorphic(String s, String t) {
+    public boolean isIsomorphic(String s, String t) {
         if (s.length() != t.length()) return false;
 
         int[] indexesS = new int[150];
@@ -83,7 +82,7 @@ public class Main {
         return true;
     }
 
-    public static boolean wordPattern(String pattern, String s) {
+    public boolean wordPattern(String pattern, String s) {
         String[] words = s.split(" ");
         Map<Character, String> map = new HashMap<>();
 
@@ -93,7 +92,7 @@ public class Main {
             if (map.containsKey(pattern.charAt(i))) {
                 String value = map.get(pattern.charAt(i));
                 if (!value.equals(words[i])) return false;
-            } else if (map.containsValue(words[i])){
+            } else if (map.containsValue(words[i])) {
                 return false;
             } else {
                 map.put(pattern.charAt(i), words[i]);
@@ -102,7 +101,7 @@ public class Main {
         return true;
     }
 
-    public static boolean isAnagram(String s, String t) {
+    public boolean isAnagram(String s, String t) {
         char[] arrayS = s.toCharArray();
         char[] arrayT = t.toCharArray();
 
@@ -112,14 +111,14 @@ public class Main {
         return Arrays.equals(arrayT, arrayS);
     }
 
-    public static boolean isHappy(int n) {
+    public boolean isHappy(int n) {
         HashSet<Integer> nSet = new HashSet<>();
 
         while (nSet.add(n)) {
             int sum = 0;
 
             while (n > 0) {
-                sum += (n%10) * (n%10);
+                sum += (n % 10) * (n % 10);
                 n /= 10;
             }
 
@@ -132,14 +131,35 @@ public class Main {
         return false;
     }
 
-    public static boolean containsNearbyDuplicate(int[] nums, int k) {
+    public boolean containsNearbyDuplicate(int[] nums, int k) {
         Map<Integer, Integer> numsMap = new HashMap<>();
-        for (int i=0; i<nums.length; i++) {
+        for (int i = 0; i < nums.length; i++) {
             if (numsMap.containsKey(nums[i]) && Math.abs(numsMap.get(nums[i]) - i) <= k) {
                 return true;
             }
             numsMap.put(nums[i], i);
         }
         return false;
+    }
+
+    public List<String> summaryRanges(int[] nums) {
+        List<String> intervals = new ArrayList<>();
+        if (nums.length == 1) {
+            intervals.add(nums[0] + "");
+            return intervals;
+        }
+        for (int i = 0; i < nums.length; i++) {
+            int a = nums[i];
+
+            while (i + 1 < nums.length && (nums[i + 1] - nums[i]) == 1) {
+                i++;
+            }
+            if (a != nums[i]) {
+                intervals.add(a + "->" + nums[i]);
+            } else {
+                intervals.add(a + "");
+            }
+        }
+        return intervals;
     }
 }
