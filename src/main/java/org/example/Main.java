@@ -162,4 +162,24 @@ public class Main {
         }
         return intervals;
     }
+
+    public boolean isValid(String s) {
+        Stack<Character> sStack = new Stack<>();
+
+        for (char c: s.toCharArray()) {
+            if (c == '(' || c == '[' || c == '{') {
+                sStack.push(c);
+            } else {
+                if (sStack.isEmpty()) return false;
+            }
+
+            char top = sStack.peek();
+            if ((c == ')' && top == '(') || (c == ']' && top == '[') || (c == '}' && top == '{')) {
+                sStack.pop();
+            } else {
+                return false;
+            }
+        }
+        return sStack.isEmpty();
+    }
 }
