@@ -341,4 +341,13 @@ public class Main {
 
         return n;
     }
+
+    public int hammingWeight(int n) {
+        String binary = Integer.toBinaryString(n);
+        int i = 0;
+        for(char c : binary.toCharArray()) {
+            if (c == '1') i++;
+        }
+        return i;
+    }
 }
