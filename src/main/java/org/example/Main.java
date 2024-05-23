@@ -369,15 +369,13 @@ public class Main {
         return last;
     }
 
-    public int climbStairs(int n) {
-        if (n == 1 || n == 0) return 1;
-
-        int[] steps = new int[n+1];
-        steps[0] = steps[1] = 1;
-        for (int i = 2; i <=n; i++) {
-            steps[i] = steps[i - 1] + steps[i - 2];
+    public int removeDuplicates(int[] nums) {
+        int l = 1   ;
+        for (int i = 1; i < nums.length; i++) {
+            if (l == 1 || nums[i] != nums[l - 2]) {
+                nums[l++] = nums[i];
+            }
         }
-
-        return steps[n];
+        return l;
     }
 }
