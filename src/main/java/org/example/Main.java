@@ -396,4 +396,15 @@ public class Main {
             endIndex--;
         }
     }
+
+    public int maxProfitII(int[] prices) {
+        int max = 0;
+        int start = prices[0];
+        int len = prices.length;
+        for(int i = 1;i<len; i++){
+            if(start < prices[i]) max += prices[i] - start;
+            start = prices[i];
+        }
+        return max;
+    }
 }
