@@ -430,4 +430,15 @@ public class Main {
         };
         return ans;
     }
+
+    public String reverseWords(String s) {
+        String[] strings = s.trim().split("\\s+");
+        StringBuilder output = new StringBuilder();
+
+        for (int i = strings.length - 1; i > 0; i--) {
+            output.append(strings[i]).append(" ");
+        }
+
+        return output + strings[0];
+    }
 }
