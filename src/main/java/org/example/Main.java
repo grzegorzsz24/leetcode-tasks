@@ -441,4 +441,24 @@ public class Main {
 
         return output + strings[0];
     }
+
+    public int[] productExceptSelf(int[] nums) {
+        int n = nums.length;
+        int[] res = new int[n];
+        Arrays.fill(res, 1);
+        int current = 1;
+
+        for (int i = 0; i < n; i++) {
+            res[i] *= current;
+            current *= nums[i];
+        }
+
+        current = 1;
+        for (int i = n - 1; i >= 0; i--) {
+            res[i] *= current;
+            current *= nums[i];
+        }
+
+        return res;
+    }
 }
